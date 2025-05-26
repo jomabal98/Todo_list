@@ -40,10 +40,15 @@ def main_menu():
 
         elif option == "4":
             task_id = int(input("ID de la tarea a actualizar: "))
-            title = input("Nuevo título (deja vacío para no cambiar): ")
+            title = input("Nuevo título (deja vacío para no cambiar): ").strip()
             description = input("Nueva descripción (vacía para no cambiar): ")
             completed_input = input("¿Está completada? (s/n): ").lower()
-            completed = True if completed_input == "s" else False if completed_input == "n" else None
+            if completed_input == "s":
+                completed = True
+            elif completed_input == "n":
+                completed = False
+            else:
+                completed = None
 
             updated_task = task_controller.update_task(
                 task_id,
